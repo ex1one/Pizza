@@ -1,9 +1,8 @@
 import React from 'react';
-import styles from './sort.module.scss';
 
 const Sort = () => (
-  <div className={styles.sort}>
-    <div className={styles.sort__label}>
+  <div className="sort">
+    <div className="sort__label">
       <svg
         width="10"
         height="6"
@@ -19,9 +18,9 @@ const Sort = () => (
       <b>Сортировка по:</b>
       <span>популярности</span>
     </div>
-    <div className={styles.sort__popup}>
+    <div className="sort__popup">
       <ul>
-        <li className={styles.active}>популярности</li>
+        <li className="active">популярности</li>
         <li>цене</li>
         <li>алфавиту</li>
       </ul>

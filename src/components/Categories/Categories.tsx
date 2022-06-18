@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styles from './categories.module.scss';
 
 const Categories = () => {
   const [active, setActive] = useState(0);
@@ -12,7 +11,7 @@ const Categories = () => {
     'Закрытые',
   ];
   return (
-    <div className={styles.categories}>
+    <div className="categories">
       <ul>
         {categories.map((item, index) => (
           <li onClick={() => setActive(index)} key={item}>
