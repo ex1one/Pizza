@@ -42,25 +42,6 @@ const plugins = () => {
   return base;
 };
 
-const cssLoaders = extra => {
-  const loaders = [
-    {
-      loader: MiniCssExtractPlugin.loader,
-      options: {
-        hmr: isDev,
-        reloadAll: true,
-      },
-    },
-    'css-loader',
-  ];
-
-  if (extra) {
-    loaders.push(extra);
-  }
-
-  return loaders;
-};
-
 module.exports = {
   entry: './src/index.tsx',
   output: {
@@ -78,12 +59,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: cssLoaders(),
-      },
-      {
-        test: /\.s[ac]css$/,
-        use: cssLoaders('sass-loader'),
+        test: /\.(sa|sc|c)ss$/i,
+        use: [
+          isDev ? 'style-loader' : MiniCssExtractPlugin,
+          'css-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.(jpg|jpeg|png|svg)/,
@@ -107,7 +88,6 @@ module.exports = {
   },
   devServer: {
     port: 3000,
-    hot: isDev,
     historyApiFallback: true,
   },
   optimization: optimization(),

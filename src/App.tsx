@@ -1,4 +1,6 @@
 import React from 'react';
+import Categories from './components/Categories/Categories';
+import Sort from './components/Sort/Sort';
 
 const App = () => (
   <div>
@@ -53,6 +55,8 @@ const App = () => (
       <div className="content">
         <div className="container">
           <div className="content__top" />
+          <Categories />
+          <Sort />
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
             <div className="pizza-block">
