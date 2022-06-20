@@ -5,6 +5,9 @@ import Header from './components/Header/Header';
 import '../public/styles/app.scss';
 import PizzaBlock from './components/PizzaBlock/PizzaBlock';
 
+const sizes = [26, 40, 50];
+const types = [0, 1];
+
 const App = () => (
   <div>
     <div className="wrapper">
@@ -17,7 +20,7 @@ const App = () => (
           </div>
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
-            <PizzaBlock title="Мексиканская" price={300} />
+            <PizzaBlock types={types} sizes={sizes} title="Мексиканская" price={300} />
           </div>
         </div>
       </div>

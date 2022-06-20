@@ -67,11 +67,23 @@ module.exports = {
         ],
       },
       {
-        test: /\.(jpg|jpeg|png|svg)/,
-        use: ['asset/resource'],
+        test: /\.(jpg|jpeg|png|svg)$/i,
+        type: 'asset/resource',
       },
       {
-        test: /\.tsx?$/,
+        test: /\.svg$/i,
+        use: [
+            "babel-loader",
+          {
+            loader: "@svgr/webpack",
+            options: {
+              typescript: true,
+              ext: "tsx",
+            },
+          },],
+      },
+      {
+        test: /\.tsx?$/i,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
