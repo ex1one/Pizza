@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
@@ -34,6 +35,9 @@ const plugins = () => {
       },
     }),
     new CleanWebpackPlugin(),
+    new Dotenv({
+      prefix: 'import.meta.env.'
+    }),
     new MiniCssExtractPlugin({
       filename: "[name].('css')",
     }),

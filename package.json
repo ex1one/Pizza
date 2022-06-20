@@ -7,7 +7,7 @@
   "description": "",
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server --config webpack.config.js",
-    "start": "NODE_ENV=development webpack --mode development",
+    "start": "NODE_ENV=development webpack --mode production",
     "build": "NODE_ENV=production webpack --mode production",
     "lint": "eslint . --ext .js,.ts,.tsx --fix"
   },
@@ -25,6 +25,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.0.0",
+    "dotenv-webpack": "^7.1.0",
     "eslint": "^8.18.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",

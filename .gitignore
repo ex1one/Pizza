@@ -8,6 +8,8 @@
 /dist
 /build
 
+.env
+
 # misc
 .DS_Store
 .idea
