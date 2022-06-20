@@ -10,18 +10,23 @@ const Sort = () => {
     setActiveMenu((prev) => !prev);
   };
 
+  const clickHandler = (index: number) => {
+    setSelectedMenu(index);
+    setActiveMenu(false);
+  };
+
   return (
     <div className="sort">
       <div className="sort__label">
         <Arrow className={activeMenu ? 'arrow__active' : ''} />
         <b>Сортировка по:</b>
-        <span onClick={open}>популярности</span>
+        <span onClick={open}>{itemList[selectedMenu]}</span>
       </div>
       {activeMenu && (
         <div className="sort__popup">
           <ul>
             {itemList.map((item, index) => (
-              <li onClick={() => setSelectedMenu(index)} className={selectedMenu === index ? 'active' : ''}>{item}</li>
+              <li onClick={() => clickHandler(index)} className={selectedMenu === index ? 'active' : ''}>{item}</li>
             ))}
           </ul>
         </div>
