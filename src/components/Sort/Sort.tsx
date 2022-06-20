@@ -11,8 +11,7 @@ const Sort = () => {
   return (
     <div className="sort">
       <div className="sort__label">
-        {/* <img src={Arrow} alt="" /> */}
-        <Arrow />
+        <Arrow className={activeMenu ? 'arrow__active' : ''} />
         <b>Сортировка по:</b>
         <span onClick={open}>популярности</span>
       </div>
