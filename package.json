@@ -17,6 +17,7 @@
     "@babel/preset-react": "^7.17.12",
     "@babel/preset-typescript": "^7.17.12",
     "@svgr/webpack": "^6.2.1",
+    "@types/js-cookie": "^3.0.2",
     "@types/node": "^18.0.0",
     "@types/react-dom": "^18.0.5",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
@@ -48,6 +49,8 @@
     "webpack-dev-server": "^4.9.2"
   },
   "dependencies": {
+    "axios": "^0.27.2",
+    "js-cookie": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

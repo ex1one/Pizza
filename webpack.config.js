@@ -35,9 +35,7 @@ const plugins = () => {
       },
     }),
     new CleanWebpackPlugin(),
-    new Dotenv({
-      prefix: 'import.meta.env.'
-    }),
+    new Dotenv(),
     new MiniCssExtractPlugin({
       filename: "[name]('css')",
     }),

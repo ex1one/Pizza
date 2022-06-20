@@ -1,14 +1,8 @@
 import React, { FC, useState } from 'react';
+import { IPizza } from '../../api/pizza/types';
 
-interface IPizzaBlockProps {
-  title: string;
-  price: number;
-  types: number[];
-  sizes: number[];
-}
-
-const PizzaBlock: FC<IPizzaBlockProps> = ({
-  title, price, types, sizes,
+const PizzaBlock: FC<Omit<IPizza, 'id' | 'rating' | 'category'>> = ({
+  title, imageUrl, price, types, sizes,
 }) => {
   const typeNames = ['Тонкое', 'Традиционное'];
   const [activeType, setActiveType] = useState(0);
@@ -18,11 +12,11 @@ const PizzaBlock: FC<IPizzaBlockProps> = ({
     <div className="pizza-block">
       <img
         className="pizza-block__image"
-        src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+        src={imageUrl}
         alt="Pizza"
       />
       <h4 className="pizza-block__title">
-        <title />
+        {title}
       </h4>
       <div className="pizza-block__selector">
         <ul>
