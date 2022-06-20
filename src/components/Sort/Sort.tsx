@@ -3,6 +3,8 @@ import Arrow from '../../../public/img/Arrow.svg';
 
 const Sort = () => {
   const [activeMenu, setActiveMenu] = useState(false);
+  const [selectedMenu, setSelectedMenu] = useState(0);
+  const itemList = ['Популярности', 'Цене', 'Алфавиту'];
 
   const open = () => {
     setActiveMenu((prev) => !prev);
@@ -18,9 +20,9 @@ const Sort = () => {
       {activeMenu && (
         <div className="sort__popup">
           <ul>
-            <li className="active">популярности</li>
-            <li>цене</li>
-            <li>алфавиту</li>
+            {itemList.map((item, index) => (
+              <li onClick={() => setSelectedMenu(index)} className={selectedMenu === index ? 'active' : ''}>{item}</li>
+            ))}
           </ul>
         </div>
       )}
