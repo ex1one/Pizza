@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
@@ -34,31 +35,13 @@ const plugins = () => {
       },
     }),
     new CleanWebpackPlugin(),
+    new Dotenv(),
     new MiniCssExtractPlugin({
-      filename: "[name].('css')",
+      filename: "[name]('css')",
     }),
   ];
 
   return base;
-};
-
-const cssLoaders = extra => {
-  const loaders = [
-    {
-      loader: MiniCssExtractPlugin.loader,
-      options: {
-        hmr: isDev,
-        reloadAll: true,
-      },
-    },
-    'css-loader',
-  ];
-
-  if (extra) {
-    loaders.push(extra);
-  }
-
-  return loaders;
 };
 
 module.exports = {
@@ -78,19 +61,24 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: cssLoaders(),
+        test: /\.(sa|sc|c)ss$/i,
+        use: [
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
       },
       {
-        test: /\.s[ac]css$/,
-        use: cssLoaders('sass-loader'),
+        test: /\.(jpg|jpeg|png)$/i,
+        type: 'asset/resource',
       },
       {
-        test: /\.(jpg|jpeg|png|svg)/,
-        use: ['asset/resource'],
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: ['@svgr/webpack'],
       },
       {
-        test: /\.tsx?$/,
+        test: /\.tsx?$/i,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -107,7 +95,6 @@ module.exports = {
   },
   devServer: {
     port: 3000,
-    hot: isDev,
     historyApiFallback: true,
   },
   optimization: optimization(),

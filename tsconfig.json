@@ -5,6 +5,7 @@
     "rootDir": ".",
     "moduleResolution": "node",
     "noEmit": true,
+    "baseUrl": "/",
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
@@ -16,9 +17,10 @@
     "skipLibCheck": true,
     "strict": true,
     "module": "es6",
-    "jsx": "preserve",
+    "jsx": "preserve"
   },
   "exclude": [
     "./node_modules"
-  ]
+  ],
+  "include": ["src", "typings.d.ts"]
 }
