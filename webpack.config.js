@@ -39,7 +39,7 @@ const plugins = () => {
       prefix: 'import.meta.env.'
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].('css')",
+      filename: "[name]('css')",
     }),
   ];
 
@@ -65,7 +65,7 @@ module.exports = {
       {
         test: /\.(sa|sc|c)ss$/i,
         use: [
-          isDev ? 'style-loader' : MiniCssExtractPlugin,
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader',
         ],
