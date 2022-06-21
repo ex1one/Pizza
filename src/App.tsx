@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import Categories from './components/Categories/Categories';
 import Sort from './components/Sort/Sort';
 import Header from './components/Header/Header';
 import '../public/styles/app.scss';
 import PizzaBlock from './components/PizzaBlock/PizzaBlock';
+import pizzaState from './store/atoms/Pizza';
 import fetchPizza from './api/pizza';
-import { IPizza } from './api/pizza/types';
+import Skeleton from './components/Skeleton/Skeleton';
 
 const App = () => {
-  const [pizza, setPizza] = useState<IPizza[] | null>(null);
+  const [pizza, setPizza] = useRecoilState(pizzaState);
 
   useEffect(() => {
-    fetchPizza.then(({ data }) => setPizza(data));
+    setTimeout(() => {
+      fetchPizza.then(({ data }) => setPizza(data));
+    }, 1000);
   }, []);
 
   return (
@@ -26,7 +30,7 @@ const App = () => {
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
-              {pizza && pizza.map((item) => (
+              {pizza ? pizza.map((item) => (
                 <PizzaBlock
                   imageUrl={item.imageUrl}
                   key={item.id}
@@ -35,7 +39,7 @@ const App = () => {
                   types={item.types}
                   sizes={item.sizes}
                 />
-              ))}
+              )) : <Skeleton value={3} />}
             </div>
           </div>
         </div>
